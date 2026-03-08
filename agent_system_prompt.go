@@ -1,5 +1,7 @@
 package NiAgent
 
+import "encoding/json"
+
 const rules = `1.ALWAYS output thought first.
 2.Never answer directly without action.
 3.Only conduct an task every time.
@@ -9,3 +11,17 @@ const rules = `1.ALWAYS output thought first.
 8.When Lack of tool,output {"lack":{the description of a lack tool}}`
 
 const prompt = `You must act using ReAct framework:THINK -> ACT -> OBSERVE.`
+
+func (a *Agent) ToSchema() string {
+	toolsSchema := make([]map[string]any, len(a.tools))
+
+	schema := map[string]any{
+		"role":          a.role,
+		"system_prompt": prompt,
+		"user_prompt":   a.prompt,
+		"tools":         toolsSchema,
+		"rules":         rules,
+	}
+	marshal, _ := json.Marshal(schema)
+	return string(marshal)
+}
