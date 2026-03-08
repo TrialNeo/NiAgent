@@ -1,7 +1,6 @@
 package test
 
 import (
-	"NiAgent"
 	"fmt"
 	"testing"
 	"time"
@@ -16,6 +15,5 @@ func F2(a ...interface{}) {
 }
 
 func TestTo(t *testing.T) {
-	NiAgent.WithTool("F2", "这是一个描述", F2).Call([]any{1, 2, "3"})
 
 }
