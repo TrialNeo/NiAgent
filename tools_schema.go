@@ -9,7 +9,7 @@ func (t *NAgentTool) ToToolSchema() (schema map[string]any) {
 		}
 	}
 	schema = map[string]any{
-		"name": t.name,
+		"role": t.name,
 		"desc": t.desc,
 		"parameters": map[string]any{
 			"type":       "object",
